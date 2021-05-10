@@ -2,6 +2,8 @@ package com.example.minepost_get001;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -88,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 //httpリクエスト
                 try{
                     //okhttpを利用する
-                    httpRequest("http://windy-saiki-0663.greater.jp/mine_sample.json");
+                    //httpRequest("http://rough-aso-2596.thick.jp/mine_sample.json");
+                    httpRequest("http://rough-aso-2596.thick.jp/index001.php");
                 }catch(Exception e){
                     Log.d("Exception",e.getMessage());
                 }
@@ -118,6 +121,31 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         Log.d("RESPONSE",res);
+
+                        //親スレッドの更新
+                        Handler mainHandler=new Handler(Looper.getMainLooper());
+
+                        mainHandler.post(new Runnable(){
+                            public void run(){
+
+                                // ブラウザを起動する
+                                Button browser = findViewById(R.id.browser);
+                                browser.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // phpで作成されたhtmlファイルへアクセス
+                                        Uri uri = Uri.parse(urlHTML);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                                        startActivity(intent);
+
+                                        // text clear
+                                        //textView.setText("");
+                                    }
+                                });
+
+                            }
+
+                        });
                     }
                 });
             }
@@ -173,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     });
+
                 }catch(Exception e){
                     Log.d("ArryFailure",e.getMessage());
                 }
