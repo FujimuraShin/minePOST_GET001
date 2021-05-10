@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
     //String sendData;
     RequestBody formBody;
     JSONObject json;
-    String post_URL="http://rough-aso-2596.thick.jp/pass_check.php";
+    String post_URL="http://rough-aso-2596.thick.jp/POST_GET/pass_check.php";
 
     //GET受信用の設定
     Button get_btn;
     ListView listView;
 
-    String urlHTML="http://rough-aso-2596.thick.jp/pass_check.html";
+    String urlHTML="http://rough-aso-2596.thick.jp/POST_GET/pass_check.html";
 
 
     @Override
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     //okhttpを利用する
                     //httpRequest("http://rough-aso-2596.thick.jp/mine_sample.json");
-                    httpRequest("http://rough-aso-2596.thick.jp/index001.php");
+                    httpRequest("http://rough-aso-2596.thick.jp/POST_GET/index001.php");
                 }catch(Exception e){
                     Log.d("Exception",e.getMessage());
                 }
